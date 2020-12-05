@@ -1,0 +1,632 @@
+{
+	"info": {
+		"_postman_id": "e4a7e6b3-b8f9-4a6c-af33-90d0c8781d05",
+		"name": "Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "UpdateUserInfo",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFobWVkLmFzaHJmMTNAZ21haWwuY29tIiwiaWF0IjoxNjA2ODM4NDk4fQ.gGjZVv0rsFDvAN1a57HeCEWKaxPaM7q4CijoFRpvdag\",\r\n    \"firstName\": \"Ahmed\",\r\n    \"LastName\": \"Ashraf\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/user/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"Ezzat\",\r\n    \"LastName\": \"Ashraf\",\r\n    \"email\": \"zezo.ashrf13@gmail.com\",\r\n    \"password\": \"Ezzat123\",\r\n    \"phoneNum\": \"01013160309\",\r\n    \"cart\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/user/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Mail",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"zezo.ashrf13@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/user/resendmail",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user",
+						"resendmail"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "selectAll",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/selecttodos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"selecttodos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "selectByTitle",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Ahmed\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/selectByTitle",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"selectByTitle"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "signin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"zezo.ashrf13@gmail.com\",\r\n    \"password\": \"Ezzat123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/user/signin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verify Email",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"ahmed.ashrf13@gmail.com\",\r\n    \"VCode\":927877\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/user/verify",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user",
+						"verify"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ADDPOSTS",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"creatorUserId\":\"ezzat\",\r\n    \"postContent\":\"sadfsdfsdf\",\r\n    \"city\":\"mnouf\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/posts/posts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"posts",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ADDCOMMENT",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"creatorName\": \"Ahmed\",\r\n    \"commentContent\": \"GOOD\",\r\n    \"post_id\": \"5fc655bc468ec81a14d4b63c\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/posts/comment",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"posts",
+						"comment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetPostByCity",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/posts/posts/Alex",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"posts",
+						"posts",
+						"Alex"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateCommentRateById",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"rate\":1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/posts/comment/5fc6682384d1811bf8764666",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"posts",
+						"comment",
+						"5fc6682384d1811bf8764666"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Traveler_Customers",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"travellerId\":[\"5fc668e2b568a715b0fa2c60\",\"5fc63c0534b851139841d7a9\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/offers/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"offers",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get And Post Offers",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"offer_title\":\"test1\",\r\n    \"offer_city\":\"cairo\",\r\n    \"offer_dateFrom\":\"1/1/2021\",\r\n    \"offer_dateTo\":\"10/1/2021\",\r\n    \"offer_guestTotalNo\":30,\r\n    \"offer_guestCurrentNo\":0,\r\n    \"company_ID\":\"1234\",\r\n    \"tripCost\":2000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/offers/offers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"offers",
+						"offers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Company response to custom offer",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"companiesResponse\":[{\r\n       \"deal\":false,\r\n       \"companyid\":\"123\",\r\n       \"price\":2000,\r\n       \"details\":\"asdasdasdasd\"\r\n    }]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/specialoffer/company/5fc9393acdea3c205840d1b9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"specialoffer",
+						"company",
+						"5fc9393acdea3c205840d1b9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user delet cutom offer",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/specialoffer/user/5fc9393acdea3c205840d1b9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"specialoffer",
+						"user",
+						"5fc9393acdea3c205840d1b9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add And Get New Custom offer",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": \"5fc63c0534b851139841d7a9\",\r\n    \"city\": \"cairo\",\r\n    \"HotelName\": \"ahmed\",\r\n    \"rate\": 5,\r\n    \"dateFrom\": \"12-3-2020\",\r\n    \"dateTo\": \"12-3-2020\",\r\n    \"personNumber\": 5\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/specialoffer/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"specialoffer",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Company Sign Up",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"CompanyName\":\"EzzatCompany\",\r\n    \"address\":\"asdasdasdasd\",\r\n    \"phoneNumber\":\"01013160309\",\r\n    \"rate\":5,\r\n    \"email\":\"ezzat.ashraf@gmail.com\",\r\n    \"password\":\"ezzat1123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/company/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"company",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Company Sign In",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"email\":\"ezzat.ashraf@gmail.com\",\r\n    \"password\":\"ez1123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/company/signin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"company",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Company Change PassWord",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"email\":\"ezzat.ashraf@gmail.com\",\r\n    \"password\":\"ez1123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/company/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"company",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delet from cart ",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"offerId\": \"5fc8fdca17900f09a837b19b\" ,\r\n    \"travelerNum\":3 ,\r\n    \"coast\":5000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/offers/dellcart/5fc668e2b568a715b0fa2c60",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"offers",
+						"dellcart",
+						"5fc668e2b568a715b0fa2c60"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add To Cart",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"offerId\": \"5fc8fdca17900f09a837b19b\" ,\r\n    \"travelerNum\":3 ,\r\n    \"coast\":5000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/offers/addcart/5fc668e2b568a715b0fa2c60",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"offers",
+						"addcart",
+						"5fc668e2b568a715b0fa2c60"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
