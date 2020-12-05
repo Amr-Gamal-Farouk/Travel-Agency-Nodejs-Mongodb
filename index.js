@@ -6,7 +6,6 @@ const GuideME=require('./routers/comment');
 const specialOffer=require('./routers/specialOffer')
 require('./helpers/connectiondb');
 const app = express();
-const port = 8000;
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
@@ -22,8 +21,8 @@ app.use('/api/company',UsersRouter);
 //   res.status(404).send('<h1> 404 Not Found</h1>')
 // })
 
-
+const port=process.env || 3000
 
 app.listen(port, () => {
-  console.log(`server start listen`);
+  console.log(`server listen in port ${port}`);
 });
