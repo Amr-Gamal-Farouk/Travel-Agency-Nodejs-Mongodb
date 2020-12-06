@@ -18,6 +18,9 @@
     "nodemailer": "^6.4.16",
     "sqlite3": "^5.0.0"
   },
+  "engines": {
+    "node": "15.3.0"
+  },
   "devDependencies": {
     "nodemon": "^2.0.6"
   }
