@@ -6,10 +6,10 @@ const bcrypt=require('bcrypt');
 const saltRounds=10;
 
 // Company Sign Up
-CompanyUserRouter.post('/',async(req, res)=> {
+CompanyUserRouter.post('/signup',async(req, res)=> {
     try{
     const {body}=req;
-    // hash funcation to hash password 
+    // hash funcation to hash password
     const salt=await bcrypt.genSalt(saltRounds)
     const hashPassword=await bcrypt.hash(body.password,salt)
     body.password=hashPassword
@@ -20,13 +20,10 @@ CompanyUserRouter.post('/',async(req, res)=> {
     }catch{
         res.status(400).json({status:'Not Found'})
     }
-  
+
   })
-
-
-
-  //update user by Email
-CompanyUserRouter.put('/',async(req, res)=> {
+//update user by Email
+CompanyUserRouter.put('/update',async(req, res)=> {
     try{
     const {body}=req;
     if(body.password){
@@ -36,16 +33,14 @@ CompanyUserRouter.put('/',async(req, res)=> {
   }
     const updatePassword=await CompanyUser.update({email:body.email},{$set:{password:body.password}});
         res.status(201).json({msg:"Done"})
-    
+
     }catch{
         res.status(400).json({status:'can not update'})
     }
-  
-  })
-  
 
-  
-  CompanyUserRouter.get('/',(req,res)=>{
+  })
+//
+CompanyUserRouter.get('/',(req,res)=>{
     CompanyUser.find({})
     .then((data)=>{
         res.status(200).json(data)
@@ -54,9 +49,8 @@ CompanyUserRouter.put('/',async(req, res)=> {
         res.status(400).json(err)
     })
   })
-
-  // Company Sign In
-  CompanyUserRouter.post('/signin', async (req, res) => {
+// Company Sign In
+CompanyUserRouter.post('/signin', async (req, res) => {
     const { body } = req;
 
     let data = await CompanyUser.findOne({ email: body.email });
@@ -80,19 +74,17 @@ CompanyUserRouter.put('/',async(req, res)=> {
 });
 
 
+module.exports = CompanyUserRouter;
 
-
-  module.exports = CompanyUserRouter;
-
-//check user 
-  async function checkUser(username, password) {
+//check user
+async function checkUser(username, password) {
     //... fetch user from a db etc.
- 
+
     const match = await bcrypt.compare(password, user.passwordHash);
- 
+
     if(match) {
         //login
     }
- 
+
     //...
 }

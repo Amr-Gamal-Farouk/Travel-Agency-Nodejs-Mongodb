@@ -27,30 +27,28 @@ GuideME.post('/comment', (req,res)=>{
             { _id: comment.post_id },
             { $push: { commentsId: comment._id } },
             { upsert: true }
-          );  
+          );
           if(post){
             res.status(200).json(comment);
           }else{
             res.status(400).json({"message":"cant find postId"});
-          }   
+          }
     })
     x.catch((e)=>{
         console.log(e);
         res.status(500).json(e);
     })
 });
-
 // api for viewing posts
 GuideME.get('/posts', async (req,res)=>{
     let x = await Post.find().populate("commentsId");
     if(x){
         res.status(200).json(x);
     }else{
-        res.status(400).json({"message" : "No posts found"});   
+        res.status(400).json({"message" : "No posts found"});
     }
 });
-
-// api for get posts by city 
+// api for get posts by city
 GuideME.get('/posts/:city', async (req,res)=>{
     let city = req.url.split('/')[2];
     console.log(city);
@@ -58,7 +56,7 @@ GuideME.get('/posts/:city', async (req,res)=>{
     if(x && x.length != 0){
         res.status(200).json(x);
     }else{
-        res.status(400).json({"message" : "No posts found in this city"});   
+        res.status(400).json({"message" : "No posts found in this city"});
     }
 });
 // Plus or minus comment rate
@@ -71,7 +69,7 @@ GuideME.put('/comment/:id', async (req,res)=>{
     let x= await Comment.findOneAndUpdate({_id:commentId},comments);
     if (x != null) {
         res.status(200).json(comments);
-    } 
+    }
     else {
         res.status(400).json(x);
     }

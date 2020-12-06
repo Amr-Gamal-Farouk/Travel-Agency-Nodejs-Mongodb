@@ -18,7 +18,7 @@ const transporter = nodemailer.createTransport({
 function generatVCode() {
     return Math.floor(Math.random() * Math.floor(999999));
 };
-
+//SignUp
 customer.post('/signup', async (req, res) => {
     const { body } = req;
     const salt = await bcrypt.genSalt(saltRounds)
@@ -59,7 +59,7 @@ customer.post('/signup', async (req, res) => {
         res.send("Failed!")
     }
 });
-
+//SignIn
 customer.post('/signin', async (req, res) => {
     const { body } = req;
 
@@ -82,10 +82,7 @@ customer.post('/signin', async (req, res) => {
         res.send({ msg: "wrong email and password" })
     }
 });
-
-
-
-
+//Update
 customer.patch('/update', async (req, res) => {
     try {
         const { body } = req;
@@ -107,10 +104,7 @@ customer.patch('/update', async (req, res) => {
         res.send({ errormsg: error })
     }
 })
-
-
-
-
+// Verify
 customer.post('/verify', async (req, res) => {
     const { email, VCode } = req.body;
     let userData = await Customer.findOne({ email, VCode });
@@ -129,6 +123,7 @@ customer.post('/verify', async (req, res) => {
         res.send({ msg: "Wrong VCode" })
     }
 });
+// resendCode
 customer.post('/resendmail', async (req, res) => {
     const { email } = req.body;
     try {
@@ -196,10 +191,10 @@ customer.patch('/addcard/:id', async (req, res) => {
             res.status(400);
             res.send({ msg: "UpDate Not Done" })
         }
-    } 
+    }
 }catch(error){
     res.status(400);
-    res.send({errormsg:error}) 
+    res.send({errormsg:error})
 }
 });
 customer.patch('/deletcard', async (req, res) => {

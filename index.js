@@ -13,7 +13,7 @@ const Offers=require('./routers/offers');
 
 app.use('/api/offers',Offers);
 app.use('/api/specialoffer',specialOffer);
-app.use('/api/posts',GuideME);
+app.use('/api/guideme',GuideME);
 app.use('/api/user',customer);
 app.use('/api/company',UsersRouter);
 

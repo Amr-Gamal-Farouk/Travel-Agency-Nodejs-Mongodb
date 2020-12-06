@@ -5,7 +5,7 @@ const Customer = require('../models/Customer');
 const Offers = Router();
 
 
-Offers.get('/offers', (req, res, next) => {
+Offers.get('/', (req, res, next) => {
 
   Offer.find({})
     .then((data) => {
@@ -18,7 +18,7 @@ Offers.get('/offers', (req, res, next) => {
 })
 
 //Get Offers By City
-Offers.get('/offers/:city', (req, res, next) => {
+Offers.get('/:city', (req, res, next) => {
   Offer.find({ "offer_city": req.url.split('/')[2] }).sort({ offer_cost: -1 })
     .then((data) => {
       res.status(200).json(data)
@@ -27,7 +27,8 @@ Offers.get('/offers/:city', (req, res, next) => {
       res.status(500).json(err)
     })
 })
-Offers.get('/offers/:companyid', (req, res, next) => {
+
+Offers.get('/:companyid', (req, res, next) => {
   Offer.find({ "company_ID": req.url.split('/')[2] }).sort({ offer_cost: -1 })
     .then((data) => {
       res.status(200).json(data)
@@ -39,7 +40,7 @@ Offers.get('/offers/:companyid', (req, res, next) => {
 
 
 //Add Offer
-Offers.post('/offers', (req, res, next) => {
+Offers.post('/', (req, res, next) => {
   const { body } = req;
   const newOffer = new Offer(body)
   let data = newOffer.save()
@@ -88,8 +89,8 @@ Offers.post('/addcart/:id', async (req, res) => {
 })
 
 
-// delet from cart 
-Offers.delete('/dellcart/:id', async (req, res) => {
+// delet from cart
+Offers.delete('/deletecart/:id', async (req, res) => {
   const userid = req.url.split('/')[2];
   const { body } = req;
   try {
