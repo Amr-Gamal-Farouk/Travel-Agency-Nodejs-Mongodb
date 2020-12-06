@@ -21,7 +21,7 @@ app.use('/api/company',UsersRouter);
 //   res.status(404).send('<h1> 404 Not Found</h1>')
 // })
 
-const port=process.env || 3000
+const port=process.env.PORT || 3000
 
 app.listen(port, () => {
   console.log(`server listen in port ${port}`);
