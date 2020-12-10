@@ -5,13 +5,13 @@ const nodemailer = require("nodemailer");
 const bcrypt = require('bcrypt');
 const customer = Router();
 const saltRounds = 10;
-const secretKey = "ezzat";
+const secretKey = "*key";
 const transporter = nodemailer.createTransport({
 
     service: 'gmail',
     auth: {
-        user: 'ezzat.ashraf31@gmail.com', // generated ethereal user
-        pass: 'zezoashrf13', // generated ethereal password
+        user: '*email', // generated ethereal user
+        pass: '*pass', // generated ethereal password
     },
 });
 
@@ -37,7 +37,7 @@ customer.post('/signup', async (req, res) => {
                 res.status(400).json(error.message);
             } else {
                 let info = transporter.sendMail({
-                    from: ' Company Name <ezzat.ashraf31@gmail.com>', // sender address
+                    from: ' Company Name <*email>', // sender address
                     to: body.email,
                     subject: "verification code ",
                     text: "Your verification code is : " + vCode,
@@ -131,7 +131,7 @@ customer.post('/resendmail', async (req, res) => {
         if (userData != null) {
             console.log("dddddd")
             let info = await transporter.sendMail({
-                from: ' Company Name <ezzat.ashraf31@gmail.com>', // sender address
+                from: ' Company Name <*email>', // sender address
                 to: email, // list of receivers
                 subject: "verification code" + userData.VCode, // Subject line
                 text: "Your verification code is : ", // plain text body
