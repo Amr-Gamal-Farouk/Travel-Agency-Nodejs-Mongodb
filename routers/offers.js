@@ -5,7 +5,7 @@ const Customer = require('../models/Customer');
 const Offers = Router();
 
 
-Offers.get('/', (req, res, next) => {
+Offers.get('/all', (req, res, next) => {
 
   Offer.find({})
     .then((data) => {
@@ -17,8 +17,36 @@ Offers.get('/', (req, res, next) => {
     })
 })
 
+Offers.get('/', (req, res, next) => {
+  const today= new Date(); //TODO NEW
+  Offer.find({offer_dateFrom: {$gt: today}}) //TODO NEW
+    .then((data) => {
+      res.status(200).json(data)
+
+    })
+    .catch((err) => {
+      res.status(500).json(err)
+    })
+})
+//Get Offers By IDs // TODO NEW 
+Offers.get('/useroffers',async (req, res, next) => {
+  
+  try {
+    const { userOfferIds } = req.body;
+    let UOffers = await Offer.find({ _id: { $in: [...userOfferIds] } })
+    if (UOffers != null) {
+      res.status(200).json(UOffers);
+    } else {
+      res.status(400);
+      res.send({ msg: "failed to get offers" })
+    }
+  } catch(e) {
+    res.status(404);
+    res.send(e)
+  }
+})
 //Get Offers By City
-Offers.get('/:city', (req, res, next) => {
+Offers.get('/city/:city', (req, res, next) => {
   Offer.find({ "offer_city": req.url.split('/')[2] }).sort({ offer_cost: -1 })
     .then((data) => {
       res.status(200).json(data)

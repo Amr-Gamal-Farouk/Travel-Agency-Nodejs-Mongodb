@@ -6,16 +6,23 @@ const offer = mongoose.model('offers',{
         type:String,
         required:true,
     },
+    images:{
+        type:[], 
+    },
+    offer_details:{ 
+        type:String,
+        required:true,
+    },
     offer_city:{
         type:String,
         required:true,
     },
     offer_dateFrom:{
-        type:String,
+        type:Date,
         required:true,
     },
     offer_dateTo:{
-        type:String,
+        type:Date,
         required:true,
     },
     offer_guestTotalNo:{

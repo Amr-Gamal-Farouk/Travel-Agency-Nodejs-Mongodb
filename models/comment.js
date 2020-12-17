@@ -9,6 +9,9 @@ const Comment=mongoose.model('Comment',{
         type:String,
         required:true
     },
+    userId:{
+        type:[]
+    },
     commentContent:{
         type:String,
         required:true

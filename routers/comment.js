@@ -60,16 +60,18 @@ GuideME.get('/posts/:city', async (req,res)=>{
     }
 });
 // Plus or minus comment rate
-GuideME.put('/comment/:id', async (req,res)=>{
-    let commentId = req.url.split('/')[2];
+GuideME.put('/comments/:commentid/:userid', async (req,res)=>{//TODO NEW
+    let comment = req.params.commentid;
     const{body}=req;
-    let comments = await Comment.findOne({_id:commentId});
+    let comments = await Comment.findOne({_id:comment});
     comments.rate+= parseInt(body.rate);
+    comments.userId.push(req.params.userid);//TODO NEW
     console.log( comments.rate)
-    let x= await Comment.findOneAndUpdate({_id:commentId},comments);
+    let x= await Comment.findOneAndUpdate({_id:comment},comments);
     if (x != null) {
-        res.status(200).json(comments);
-    }
+        
+        res.status(200).json(comments);//TODO NEW
+    } 
     else {
         res.status(400).json(x);
     }

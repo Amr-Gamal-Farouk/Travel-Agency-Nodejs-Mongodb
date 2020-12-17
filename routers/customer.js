@@ -5,13 +5,13 @@ const nodemailer = require("nodemailer");
 const bcrypt = require('bcrypt');
 const customer = Router();
 const saltRounds = 10;
-const secretKey = "*key";
+const secretKey = "key";
 const transporter = nodemailer.createTransport({
 
     service: 'gmail',
     auth: {
-        user: '*email', // generated ethereal user
-        pass: '*pass', // generated ethereal password
+        user: 'email', // generated ethereal user
+        pass: 'pass', // generated ethereal password
     },
 });
 
@@ -37,7 +37,7 @@ customer.post('/signup', async (req, res) => {
                 res.status(400).json(error.message);
             } else {
                 let info = transporter.sendMail({
-                    from: ' Company Name <*email>', // sender address
+                    from: ' Company Name <email>', // sender address
                     to: body.email,
                     subject: "verification code ",
                     text: "Your verification code is : " + vCode,
@@ -69,9 +69,20 @@ customer.post('/signin', async (req, res) => {
         const cmp = await bcrypt.compare(body.password, data.password);
         if (cmp) {
             //correct pass and email
-            data.password = ""
-            console.log(data.password, "pass")
-            res.status(200).json(data);
+
+            let token = jwt.sign({ username: body.email }, secretKey);
+            let user = await Customer.findOneAndUpdate({ email:body.email }, { token: token });
+            if (user != null) {
+                //token deletedd
+                delete user.password; //TODO NEW
+                user.token=token;
+                res.status(200).json(user);
+            } else {
+                // wrong email and password
+                res.status(400);
+                res.send({ msg: "wrong email and password" })
+            }
+
         } else {
             res.status(400);
             res.send({ msg: "wrong  password" })
@@ -82,19 +93,32 @@ customer.post('/signin', async (req, res) => {
         res.send({ msg: "wrong email and password" })
     }
 });
+
+customer.post("/signout", async(req, res) => {
+    const { body } = req;
+    let data = await Customer.findOneAndUpdate({ token: body.token }, { token: "" });
+    if (data != null) {
+        res.status(200).json({ msg: "log out success" });
+    } else {
+        res.status(400);
+        res.send({ msg: "failed to log out" })
+    }
+})
 //Update
 customer.patch('/update', async (req, res) => {
     try {
         const { body } = req;
         const { token } = body
-        if(body.password){
+        if (body.password) {
             const salt = await bcrypt.genSalt(saltRounds)
             const hashPassword = await bcrypt.hash(body.password, salt)
             body.password = hashPassword
         }
         let data = await Customer.findOneAndUpdate({ token }, body);
         if (data != null) {
-            res.status(200).json(data);
+            let user = await Customer.findOne({token})
+             user.password="";//TODO NEW
+            res.status(200).json(user);//TODO NEW
         }
         else {
             throw "failed to update"
@@ -131,7 +155,7 @@ customer.post('/resendmail', async (req, res) => {
         if (userData != null) {
             console.log("dddddd")
             let info = await transporter.sendMail({
-                from: ' Company Name <*email>', // sender address
+                from: ' Company Name <email>', // sender address
                 to: email, // list of receivers
                 subject: "verification code" + userData.VCode, // Subject line
                 text: "Your verification code is : ", // plain text body
@@ -160,3 +184,4 @@ customer.post('/resendmail', async (req, res) => {
 })
 
 module.exports = customer;
+

@@ -9,6 +9,9 @@ const Customer=mongoose.model('Customer',{
         type:String,
         required:true
     },
+    image:{
+        type:String,
+    },
     email:{
         type:String,
         required:true,
